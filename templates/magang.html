@@ -1,0 +1,72 @@
+{% extends 'base_white.html' %}
+{% block title %}
+  Magang
+{% endblock %}
+{% block stylesheet %}
+
+{% endblock %}
+{% block content %}
+  {% load static %}
+  <main role="main" class="container-tight">
+      <img class="img-fluid img-top mb-5" src="{% static 'image/conference_room.png' %}" alt="">
+      <p class="label"><strong>MAGANG</strong></p>
+      <div class="container-majors">
+        <div class="row no-gutters">
+          <div class="col">
+              <a href="{% url 'web:formulir' nama='TKJ' %}">
+              <img class="img-fluid img-majors" src="{% static 'image/tkj.png' %}" alt="employee">
+              <p class="label weight-54-900"><strong>TKJ</strong></p>
+              </a>
+          </div>
+          <div class="col">
+            <a href="{% url 'web:formulir' nama='RPL' %}">
+              <img class="img-fluid img-majors" src="{% static 'image/rpl.png' %}" alt="employee">
+              <p class="label weight-54-900">RPL</p>
+          </div>
+          <div class="col">
+            <a href="{% url 'web:formulir' nama='Multimedia' %}">
+              <img class="img-fluid img-majors" src="{% static 'image/mm.png' %}" alt="employee">
+              <p class="label weight-36-900">Multimedia</p>
+            </a>
+          </div>
+      </div>
+      <div class="row no-gutters mb-5 text-center">
+          <div class="col justify-content-center">
+            <a href="{% url 'web:formulir' nama='Teknik Informatika' %}">
+              <img class="img-fluid img-majors" src="{% static 'image/ti.png' %}" alt="employee">
+              <p class="label weight-40-900" id="text-center">Teknik Informatika</strong></p>
+            </a>
+          </div>
+          <div class="col">
+            <a href="{% url 'web:formulir' nama='Sistem Informasi' %}">
+              <img class="img-fluid img-majors" src="{% static 'image/si.png' %}" alt="employee">
+              <p class="label weight-40-900" id="text-center">Sistem <br> Informasi</p>
+            </a>
+          </div>
+      </div>
+    </main>
+
+    <footer class="footer bg-dark">
+      <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <a class="text-light font-weight-bold mr-3 text-decoration-none font-poppins" href="https://profil.aitc.co.id/tentang-kami" title="">About Us</a>
+                <a class="text-light font-weight-bold ml-3 text-decoration-none font-poppins" href="https://profil.aitc.co.id/hubungi-kami" title="">Contact Us</a>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a class="text-light font-weight-bold mr-4 text-decoration-none font-poppins" href="#">
+                  <i class="fa fa-twitter pr-1"></i>
+                  <span>Twitter</span>
+                </a>
+                <a class="text-light font-weight-bold ml-2 text-decoration-none font-poppins" href="#">
+                  <i class="fa fa-facebook-square pr-1"></i>
+                  <span>Facebook</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </footer>
+{% endblock %}
+{% block script %}
+
+{% endblock %}

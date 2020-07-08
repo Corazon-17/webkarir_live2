@@ -1,0 +1,179 @@
+{% extends 'base_white.html' %}
+{% block title %}
+	Formulir
+{% endblock %}
+{% block stylesheet %}
+	<style type="text/css" media="screen">
+		.container-form {
+			padding: 40px 25% 0;
+			margin-bottom: 100px;
+		}
+
+		.form-style {
+			border-color: transparent;
+			border-bottom: solid 1px #000;
+		}
+
+		.label-top {
+			font-size: 20px;
+			margin-bottom: 0px;
+		}
+		
+		.label-sm {
+			font-size: 15px;
+		}
+
+	    .btn-form {
+	      padding: 3px 40px;
+	      font-size: 20px;
+	      border-radius: 10px;
+	      border-color: transparent;
+	    }
+	</style>
+{% endblock %}
+{% block content %}
+	<main role="main" class="container-form">
+		<h2 class="font-weight-bold font-arial">Formulir Magang {{ jurusan.nama }}</h2>
+		<h5 class="text-danger">* Wajib</h5>
+		<form action="{% url 'web:formulir' nama=jurusan.nama %}" method="POST" enctype="multipart/form-data">
+			{% csrf_token %}
+			{% load widget_tweaks %}
+			{% if messages %}
+				    {% for message in messages %}
+				      <div class="alert {% if message.tags %} alert-{{ message.tags }}{% endif %}">{{ message|safe }}</div>
+				    {% endfor %}
+				  {% endif %}
+				  {% if form.errors %}
+				    <div class="alert alert-error">
+				      <h4>Please fix the following errors</h4>
+				      <ul>
+				        {% for field in form %}
+				          {% if field.errors %}
+				            {% for error in field.errors %}
+				              <li><a href="#id_{{ field.name }}" class="error">{{ error|escape }}</a></li>
+				            {% endfor %}
+				          {% endif %}
+				        {% endfor %}
+				      </ul>
+				      {% if form.non_field_errors %}
+				        {{ form.non_field_errors }}
+				      {% endif %}
+				    </div>
+				  {% endif %}
+			<div class="card border-dark px-3 py-2 my-3">
+				<div class="form-group">
+					<label class="label-top required-label font-arial">Nama</label>
+					<p class="label-sm font-arial">Nama individu atau jika berkelompok sertakan semua nama</p>
+					{% if formulir != None %}
+						{% render_field form.nama class="form-control form-style" value=formulir.nama %}
+					{% else %}
+						{% render_field form.nama class="form-control form-style" %}
+					{% endif %}
+			    </div>
+		    </div>
+		    <div class="card border-dark px-3 py-2 my-3">
+				<div class="form-group">
+					<label class="label-top required-label font-arial">Asal Sekolah/Universitas</label>
+					{% if formulir != None %}
+						{% render_field form.sekolah class="form-control form-style" value=formulir.sekolah %}
+					{% else %}
+						{% render_field form.sekolah class="form-control form-style" %}
+					{% endif %}
+			    </div>
+		    </div>
+		    <div class="card border-dark px-3 py-2 my-3">
+				<div class="form-group">
+					<label class="label-top required-label font-arial">Alamat Email</label>
+					<p class="label-sm font-arial">Masukkan alamat email salah satu jika berkelompok (Email yang aktif)</p>
+					{% if formulir != None %}
+						{% render_field form.email class="form-control form-style" value=formulir.email %}
+					{% else %}
+						{% render_field form.email class="form-control form-style" %}
+					{% endif %}
+			    </div>
+		    </div>
+		    <div class="card border-dark px-3 py-2 my-3">
+				<div class="form-group">
+					<label class="label-top required-label font-arial">No. Handphone</label>
+					<p class="label-sm font-arial">Masukkan no. handphone salah satu jika berkelompok (Nomor yang dapat dihubungi)</p>
+					{% if formulir != None %}
+						{% render_field form.no_hp class="form-control form-style" value=formulir.no_hp %}
+					{% else %}
+						{% render_field form.no_hp class="form-control form-style" %}
+					{% endif %}
+			    </div>
+		    </div>
+		    <div class="card border-dark px-3 py-2 my-3">
+				<div class="form-group">
+					<label class="label-top required-label font-arial">Periode Magang</label>
+					{% if formulir != None %}
+						{% render_field form.periode class="form-control form-style" value=formulir.periode %}
+					{% else %}
+						{% render_field form.periode class="form-control form-style" %}
+					{% endif %}
+			    </div>
+		    </div>
+		    <div class="card border-dark px-3 py-2 my-3">
+				<div class="form-group">
+					<label class="label-top required-label font-arial">Surat Magang</label><br>
+					{% if formulir != None %}
+						<a href="{{ formulir.surat.url }}" title="">{{ formulir.surat.name | slice:"6:" | truncatechars:40 }}</a>
+						{% render_field form.surat class="form-control border-0" value=formulir.surat %}
+					{% else %}
+						{% render_field form.surat class="form-control border-0" %}
+					{% endif %}
+			    </div>
+		    </div>
+			<button type="submit" class="btn-kirim btn-form font-arial">Kirim</button>
+
+		</form>
+		<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="Success" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Pemberitahuan</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Data Berhasil Disimpan</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <a href="{% url 'web:index' %}" title=""><button type="button" class="btn btn-primary">Home</button></a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</main>
+	<footer class="footer bg-dark">
+      <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <a class="text-light font-weight-bold mr-3 text-decoration-none font-poppins" href="https://profil.aitc.co.id/tentang-kami" title="">About Us</a>
+                <a class="text-light font-weight-bold ml-3 text-decoration-none font-poppins" href="https://profil.aitc.co.id/hubungi-kami" title="">Contact Us</a>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a class="text-light font-weight-bold mr-4 text-decoration-none font-poppins" href="#">
+                  <i class="fa fa-twitter pr-1"></i>
+                  <span>Twitter</span>
+                </a>
+                <a class="text-light font-weight-bold ml-2 text-decoration-none font-poppins" href="#">
+                  <i class="fa fa-facebook-square pr-1"></i>
+                  <span>Facebook</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </footer>
+{% endblock %}
+{% block script %}
+	{% if successful_submit %}
+	    <script type="text/javascript">
+	        $(document).ready(function(){
+	            $("#modalSuccess").modal('show');
+	        });
+	    </script>
+	{% endif %}
+{% endblock %}

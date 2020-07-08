@@ -1,0 +1,96 @@
+{% extends 'base_bg.html' %}
+{% block title %}Login{% endblock %}
+{% block stylesheet %}
+
+{% endblock %}
+{% block content %}
+  
+  <main role="main" class="container-login">
+    <div class="row align-items-center">
+      <div class="col">
+        <p class="text-white  font-poppins inline"><strong>Kerja Keras, Perjuangan, Ketekunan, dan </strong></p>
+        <p class="text-darkturquoise  font-poppins inline"><strong>Kesungguhan.</strong></p>
+      </div>
+      <div class="col">
+        <div class="card card-login">
+          <div class="container-form">
+            <h3 class="text-center pt-4 mb-4 font-poppins"><strong>Masuk Akun Anda</strong></h3>
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                    <div {% if message.tags %} class="{{ message.tags }} text-danger"{% endif %}>* {{ message }}</div>
+                    {% endfor %}
+                </div><br>
+            {% endif %}
+            <form class="" action="" method="POST">
+                    {% csrf_token %}
+                  <div class="form-group">
+                    <label for="username" class=" font-poppins weight-500 mt-3">Nama Pengguna</label>
+                    <input type="text" name="user" class="form-control border-primary" id="username" placeholder="Username">
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class=" font-poppins weight-500">Password</label>
+                    <input type="password" name="pass" class="form-control border-primary" id="password" placeholder="Password">
+                  </div>
+                  {{ capt.captcha }}
+                  <button type="submit" class="btn btn-masuk btn-block py-2 mt-3">Masuk</button>
+                  <p class=" font-poppins mt-2 mb-0">Lupa password ? Klik <a href="#">disini</a></p>
+                  <p class=" font-poppins">Belum punya akun ? Klik <a href="{% url 'web:register' %}">disini</a></p>
+                </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="Success" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Pemberitahuan</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Anda Berhasil Masuk</p>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <a href="{% url 'web:index' %}" title=""><button type="button" class="btn btn-primary">Home</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer bg-dark">
+      <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <a class="text-light font-weight-bold mr-3 text-decoration-none font-poppins" href="https://profil.aitc.co.id/tentang-kami" title="">About Us</a>
+                <a class="text-light font-weight-bold ml-3 text-decoration-none font-poppins" href="https://profil.aitc.co.id/hubungi-kami" title="">Contact Us</a>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a class="text-light font-weight-bold mr-4 text-decoration-none font-poppins" href="#">
+                  <i class="fa fa-twitter pr-1"></i>
+                  <span>Twitter</span>
+                </a>
+                <a class="text-light font-weight-bold ml-2 text-decoration-none font-poppins" href="#">
+                  <i class="fa fa-facebook-square pr-1"></i>
+                  <span>Facebook</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </footer>
+    <div class="ellipse-1"></div><div class="ellipse-2"></div><div class="ellipse-3"></div>
+{% endblock %}
+
+{% block script %}
+  {% if successful_submit %}
+      <script type="text/javascript">
+          $(document).ready(function(){
+              $("#modalSuccess").modal('show');
+          });
+      </script>
+  {% endif %}
+{% endblock %}

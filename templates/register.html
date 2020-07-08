@@ -1,0 +1,168 @@
+{% extends 'base_bg.html' %}
+{% block title %}
+	Register
+{% endblock %}
+{% block stylesheet %}
+	<style type="text/css" media="screen">
+		body > .container {
+	      padding: 60px 15px 0px;
+	      margin-bottom: 100px;
+	    }
+
+		.form-control{
+		  height: 50px;
+		  font-size: 14px;
+		}
+
+		.long-place::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+		  white-space:pre-line;  
+		  position:relative;
+		  top:-10px;
+		}
+
+		.long-place::-moz-placeholder { /* Firefox 19+ */
+		  white-space:pre-line;  
+		  position:relative;
+		  top:-10px;
+		}
+		.long-place:-ms-input-placeholder { /* IE 10+ */
+		  white-space:pre-line;  
+		  position:relative;
+		  top:-10px;
+		}
+		.long-place:-moz-placeholder { /* Firefox 18- */
+		  white-space:pre-line;  
+		  position:relative;
+		  top:-10px;
+		}
+	</style>
+{% endblock %}
+{% block content %}
+	<main role="main" class="container">
+		<form action="{% url 'web:register' %}" method="POST" accept-charset="utf-8">
+			{% csrf_token %}
+			{% load widget_tweaks %}
+			<div class="card card-border-20">
+				<div class="container-reg">
+					  {% if messages %}
+					    {% for message in messages %}
+					      <div {% if message.tags %} class="{{ message.tags }} text-danger font-poppins"{% endif %}>* {{ message }}</div>
+					    {% endfor %}
+					  {% endif %}
+
+					  {% if form.errors %}
+					    <div class="alert alert-error">
+					      <h4 class="font-poppins">Please fix the following errors</h4>
+					      <ul>
+					        {% for field in form %}
+					          {% if field.errors %}
+					            {% for error in field.errors %}
+					              <li><a href="#id_{{ field.name }}" class="error font-poppins">{{ error|escape }}</a></li>
+					            {% endfor %}
+					          {% endif %}
+					        {% endfor %}
+					      </ul>
+					      {% if form.non_field_errors %}
+					        {{ form.non_field_errors }}
+					      {% endif %}
+					    </div>
+					  {% endif %}
+					<h2 class="mb-4 pt-3 font-poppins"><strong>Register</strong></h2>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label class="required-label font-poppins weight-500">Nama Pengguna </label>
+								<!-- <input type="text" class="form-control" name="username" value="" placeholder="Nama Pengguna" required> -->
+								{% render_field form.username class="form-control border-primary" placeholder="Nama Pengguna" %}
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label class="required-label font-poppins weight-500">No. Identitas KTP</label>
+								{% render_field profil_form.no_ktp class="form-control border-primary" placeholder="16 Digit" %}
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label class="required-label font-poppins weight-500">No. Handphone</label>
+								{% render_field profil_form.no_hp class="form-control long-place border-primary" placeholder="Note: no. handphone harus diawali dengan kode area negara. contoh: 62xxxxxxxxxxx" %}
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col">
+							<div class="form-group">
+								<label class="font-poppins weight-500">Email</label>
+								{% render_field form.email class="form-control border-primary" placeholder="Email harus aktif dan benar" %}
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label class="required-label font-poppins weight-500">Password</label>
+								{% render_field form.password1 class="form-control border-primary" placeholder="Min 8 Karakter (Huruf dan Angka)" %}
+							</div>
+						</div>
+						<div class="col">
+							<div class="form-group">
+								<label class="required-label font-poppins weight-500">Konfirmasi Password</label>
+								{% render_field form.password2 class="form-control border-primary" placeholder="Min 8 Karakter (Huruf dan Angka)" %}
+							</div>
+						</div>
+					</div>
+					<label class="font-poppins weight-500">Captcha</label>
+					{{ capt.captcha }}
+					<button type="submit" class="btn btn-daftar px-5 mt-3 mb-0">Daftar</button>
+				</div>
+			</div>
+		</form>
+		<div class="modal fade" id="modalSuccess" tabindex="-1" role="dialog" aria-labelledby="Success" aria-hidden="true">
+		  <div class="modal-dialog" role="document">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title" id="exampleModalLabel">Pemberitahuan</h5>
+		        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+		          <span aria-hidden="true">&times;</span>
+		        </button>
+		      </div>
+		      <div class="modal-body">
+		        <p>Pendaftaran Berhasil</p>
+		      </div>
+		      <div class="modal-footer">
+		        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		        <a href="{% url 'web:index' %}" title=""><button type="button" class="btn btn-primary">Home</button></a>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+	</main>
+	<footer class="footer bg-dark">
+      <div class="container">
+        <div class="row">
+            <div class="col d-flex justify-content-start">
+                <a class="text-light font-weight-bold mr-3 text-decoration-none font-poppins" href="https://profil.aitc.co.id/tentang-kami" title="">About Us</a>
+                <a class="text-light font-weight-bold ml-3 text-decoration-none font-poppins" href="https://profil.aitc.co.id/hubungi-kami" title="">Contact Us</a>
+            </div>
+            <div class="col d-flex justify-content-end">
+                <a class="text-light font-weight-bold mr-4 text-decoration-none font-poppins" href="#">
+                  <i class="fa fa-twitter pr-1"></i>
+                  <span>Twitter</span>
+                </a>
+                <a class="text-light font-weight-bold ml-2 text-decoration-none font-poppins" href="#">
+                  <i class="fa fa-facebook-square pr-1"></i>
+                  <span>Facebook</span>
+                </a>
+            </div>
+        </div>
+      </div>
+    </footer>
+    <div class="ellipse-1"></div><div class="ellipse-2"></div><div class="ellipse-3"></div>
+{% endblock %}
+{% block script %}
+	{% if successful_submit %}
+	    <script type="text/javascript">
+	        $(document).ready(function(){
+	            $("#modalSuccess").modal('show');
+	        });
+	    </script>
+	{% endif %}
+{% endblock %}

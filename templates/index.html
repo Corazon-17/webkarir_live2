@@ -1,0 +1,39 @@
+{% extends 'base_bg.html' %}
+{% block title %}
+  Home
+{% endblock %}
+{% block stylesheet %}
+  <style type="text/css" media="screen">
+    .container-index {
+      padding: 30px 10% 0px;
+    }
+  </style>
+{% endblock %}
+{% block content %}
+	{% load static %}
+	<main role="main" class="container-index">
+      <div class="row">
+        <div class="col">
+          <img class="img-person" src="{% static 'image/yes_man.png' %}" alt="logo">
+        </div>
+        <div class="col">
+          <h1 class="text-light font-weight-bold pb-3 pt-home font-poppins">E-RECRUITMENT</h1>
+          <h4 class="text-light pb-5 pt-2 font-poppins">Berkarir Bersama <strong>Adisatya IT Consultant</strong></h4>
+          <div class="row">
+            <div class="col">
+              <a href="{% url 'web:karir' %}" title=""><button type="button" class="btn btn-karir font-poppins float-left mb-4">Karir</button></a>
+            </div>
+            <div class="col">
+              <a href="{% url 'web:magang' %}" title=""><button type="button" class="btn btn-magang font-poppins float-center mb-4">Magang</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+  </main>
+  <div class="ellipse-1"></div><div class="ellipse-2"></div><div class="ellipse-3"></div>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>{% block title %}{% endblock %}</title>
+
+    {% load static %}
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/custom.css' %}" rel="stylesheet">
+
+    <style type="text/css" media="screen">
+
+      .box-shadow {
+        box-shadow: 0px 5px 10px rgba(182, 182, 182, 0.25);
+      }
+
+      .btn-styled {
+        color: #000;
+        border: 2px solid #000;
+      }
+
+      .btn-styled:hover {
+        color: #000;
+      }
+
+    </style>
+    {% block stylesheet %}{% endblock %}
+  </head>
+
+  <body>
+    <header>
+      <nav class="navbar navbar-expand-md navbar-dark bg-transparent box-shadow">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="{% url 'web:index' %}"><img src="{% static 'image/logo.png' %}" alt="" id="brand-logo"></a>
+          <!-- {% if request.user.is_authenticated %}
+            <h4 class="py-0">Hello, {{ user.username }}</h4>
+          {% endif %} -->
+          <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item">
+                <a class="nav-link text-dark font-poppins" href="{% url 'web:index' %}">Beranda</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark font-poppins" href="https://profil.aitc.co.id/tentang-kami">Tentang Kami</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark font-poppins" href="https://profil.aitc.co.id/portofolio">Portofolio</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link text-dark font-poppins" href="https://profil.aitc.co.id/hubungi-kami">Kontak Kami</a>
+              </li>
+            </ul><emsp>
+            {% if request.user.is_authenticated %}
+            <a class="btn-styled font-poppins" href="{% url 'web:logout' %}">Logout</a>
+            {% else %}
+            <a class="btn-styled font-poppins" href="{% url 'web:login' %}">Login</a>
+            <a class="btn-styled font-poppins" href="{% url 'web:register' %}">Register</a>
+            {% endif %}
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static 'jquery/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    {% block script %}{% endblock %}
+  </body>
+</html>

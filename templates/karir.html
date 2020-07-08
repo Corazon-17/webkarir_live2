@@ -1,0 +1,140 @@
+{% extends 'base_bg.html' %}
+{% block title %}
+  Karir
+{% endblock %}
+{% block stylesheet %}
+  <style type="text/css" media="screen">
+    .container-mid {
+      margin-left: 25%;
+      margin-right: 25%;
+      padding-left: 8px;
+      padding-right: 8px;
+    }
+  </style>
+
+{% endblock %}
+{% block content %}
+
+  {% load static %}
+  <main role="main" class="container-tight">
+      <h1 class="mt-5 mb-4 text-center text-light font-weight-bold">CV. Adisatya IT Consultant</h1>
+      <h2 class="text-center text-light font-notosans mb-3">REKRUTMEN</h2>
+      <div class="card card-style text-center">
+        <div class="card-body">
+          <h3 class="card-title font-notosans mt-2">Bagaimana Cara Mendaftar</h3>
+          <p class="card-text font-notosans mt-3">Selamat Datang, Ikuti langkah-langkah ini untuk menjadi bagian dari CV. Adisatya IT Consultant</p><br>
+          <div class="row">
+            <div class="col">
+              <div class="card-img-top d-flex justify-content-center">
+                <div class="bg-icon d-flex justify-content-center align-items-center">
+                  <div class="img-icon"></div>
+                  <div class="svg-icon"><img src="{% static 'image/svg/register.svg' %}" alt=""></div>
+                </div>
+              </div>
+              <div class="card-text mt-2  font-arial"><h5 class="font-weight-bold">Register</h5></div>
+              <p class="card-text  font-arial">Klik masuk di sudut kanan atas halaman ini. Klik daftar jika Anda tidak memiliki akun.</p>
+            </div>
+            <div class="col">
+              <div class="card-img-top d-flex justify-content-center">
+                <div class="bg-icon d-flex justify-content-center align-items-center">
+                  <div class="img-icon"></div>
+                  <div class="svg-icon"><img src="{% static 'image/svg/login.svg' %}" alt=""></div>
+                </div>
+              </div>
+              <div class="card-text mt-2 font-arial"><h5 class="font-weight-bold">Login</h5></div>
+              <p class="card-text font-arial">Verifikasi akun anda melalui email yang anda daftarkan lalu masuk.</p>
+            </div>
+            <div class="col">
+              <div class="card-img-top d-flex justify-content-center">
+                <div class="bg-icon d-flex justify-content-center align-items-center">
+                  <div class="img-icon"></div>
+                  <div class="svg-icon"><img src="{% static 'image/svg/upload.svg' %}" alt=""></div>
+                </div>
+              </div>
+              <div class="card-text mt-2  font-arial"><h5 class="font-weight-bold">Upload CV</h5></div>
+              <p class="card-text  font-arial">Lengkapi CV kamu.</p>
+            </div>
+            <div class="col">
+              <div class="card-img-top d-flex justify-content-center">
+                <div class="bg-icon d-flex justify-content-center align-items-center">
+                  <div class="img-icon"></div>
+                  <div class="svg-icon"><img src="{% static 'image/svg/posisi.svg' %}" alt=""></div>
+                </div>
+              </div>
+              <div class="card-text mt-2 font-arial"><h5 class="font-weight-bold">Posisi yang Tersedia</h5></div>
+              <p class="card-text  font-arial">Cari posisi yang tersedia.</p>
+            </div>
+            <div class="col">
+              <div class="card-img-top d-flex justify-content-center">
+                <div class="bg-icon d-flex justify-content-center align-items-center">
+                  <div class="img-icon"></div>
+                  <div class="svg-icon"><img src="{% static 'image/svg/seleksi.svg' %}" alt=""></div>
+                </div>
+              </div>
+              <div class="card-text mt-2  font-arial"><h5 class="font-weight-bold">Seleksi</h5></div>
+              <p class="card-text  font-arial">Kami ingin Anda selalu mendapat informasi terbaru sehingga informasi apapun akan diberikan melalui menu Kotak Masuk di akun profil anda.</p>
+            </div>
+          </div>  
+        </div>
+      </div>
+      <h2 class="text-center mt-5 text-light font-notosans">Apa Keahlianmu ?</h2><br>
+      <div class="container-mid">
+        <div class="row">
+          {% for val in keahlian %}
+            {% for obj in lowongan %}
+              {% if obj.keahlian.nama == val.nama %}
+                <div class="col d-flex justify-content-center">
+                  <a class="text-decoration-none" href="{{ obj.get_detail }}">
+                    <div class="card-skill">
+                      <div class="card-title mb-0"><h3 class="font-notosans">{{ val.nama }}</h3></div>
+                      <div class="card-text  font-notosans mt-0">Tersedia</div>
+                    </div>
+                  </a>
+                </div>
+              {% endif %}
+            {% endfor %}
+            {% if val.nama not in tersedia %}
+              <div class="col d-flex justify-content-center">
+                <div class="card-skill">
+                  <div class="card-title mb-0"><h3 class="font-notosans">{{ val.nama }}</h3></div>
+                  <div class="card-text font-notosans">Belum Tersedia</div>
+                </div>
+              </div>
+            {% endif %}          
+          {% endfor %}
+        </div>
+      </div>
+      <div class="container2 mt-3">          
+          <div class="float-right">
+              <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
+                <div class="collapse navbar-collapse" id="navbarBottom">
+                  <a class="text-dark font-poppins mr-3 text-decoration-none" href="{% url 'web:index' %}">Beranda</a>
+                  <a class="text-dark font-poppins mr-3 text-decoration-none" href="https://profil.aitc.co.id/tentang-kami">Tentang Kami</a>
+                  <a class="text-dark font-poppins mr-3 text-decoration-none" href="https://profil.aitc.co.id/portofolio">Portofolio</a>
+                  <a class="text-dark font-poppins mr-3 text-decoration-none" href="https://profil.aitc.co.id/hubungi-kami">Kontak Kami</a>
+                  {% if request.user.is_authenticated %}
+                  <a class="btn-styled-footer font-poppins" href="{% url 'web:logout' %}">Logout</a>
+                  {% else %}
+                  <a class="btn-styled-footer font-poppins mr-2" href="{% url 'web:login' %}">Login</a>
+                  <a class="btn-styled-footer font-poppins" href="{% url 'web:register' %}">Register</a>
+                  {% endif %}
+                </div>
+                <button class="navbar-toggler bg-dark" type="button" data-toggle="collapse" data-target="#navbarBottom" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+              </nav>
+          </div>
+          <div class="float-left mt-3">
+              <a href="{% url 'web:index' %}"><img src="{% static 'image/logo.png' %}" alt="" id="brand-logo"></a>
+          </div>
+      </div>
+    </main>
+
+        
+    <div class="ellipse-1-karir"></div><div class="ellipse-2-karir"></div><div class="ellipse-3-karir"></div>
+
+{% endblock %}
+{% block script %}
+
+{% endblock %}
+
