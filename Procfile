@@ -1,1 +1,1 @@
-web: gunicorn djangoBlog.wsgi --log-file -
+web: gunicorn webkarir.wsgi --log-file -
