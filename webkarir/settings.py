@@ -24,9 +24,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '593ke56etg6dubl0te9!=_nw3vi6tk9rs!aipn+b^23_3!iu8m'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['webkarir.herokuapp.com','www.webkarir.herokuapp.com', '127.0.0.1']
+ALLOWED_HOSTS = ['webkarir.herokuapp.com', '127.0.0.1']
 
 
 # Application definition
