@@ -138,4 +138,4 @@ RECAPTCHA_PRIVATE_KEY = '6LeOf6gZAAAAAJ1oZhZ5dR7zrV_neiHJ2Fh2dp5R'
 # RECAPTCHA_DOMAIN = 'www.recaptcha.net'
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
