@@ -7,7 +7,7 @@ class Profil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     no_ktp = models.CharField(max_length=16, unique=True)
-    no_hp = models.CharField(max_length=15)
+    no_hp = models.CharField(max_length=15, unique=True)
 
     def __str__(self):
         return self.user.username
@@ -37,7 +37,11 @@ class Lamaran(models.Model):
     no_hp = models.CharField(max_length=15)
     tempat_lahir = models.CharField(max_length=100)
     tanggal_lahir = models.DateField()
-    jenis_kelamin = models.CharField(max_length=15)
+    gender_choices = [
+        ('Laki-Laki', 'Laki-Laki'),
+        ('Perempuan', 'Perempuan')
+    ]
+    jenis_kelamin = models.CharField(max_length=15, choices=gender_choices)
     alamat = models.CharField(max_length=200)
     transkrip = models.FileField(upload_to='transkrip/')
     ijazah = models.FileField(upload_to='ijazah/')

@@ -50,6 +50,7 @@ class getLamaran(View):
 			profil = get_object_or_404(Profil, user_id=user.id)
 			lowongan = get_object_or_404(Lowongan, id=id)
 			form = LamaranForm
+			print(LamaranForm)
 
 			try:
 			    lamaran = Lamaran.objects.filter(lowongan=lowongan, pelamar=profil).latest("id")

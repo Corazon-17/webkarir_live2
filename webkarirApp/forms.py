@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from captcha.fields import ReCaptchaField
 from captcha.widgets import ReCaptchaV2Checkbox
+from django.core import validators
 from .models import *
 
 class UserForm(UserCreationForm):
@@ -23,6 +24,11 @@ class UserForm(UserCreationForm):
 		]
 
 class ProfilForm(forms.ModelForm):
+	# no_ktp = forms.CharField(widget=forms.NumberInput())
+	# no_hp = forms.CharField(widget=forms.NumberInput())
+	no_ktp = forms.CharField(min_length=16, max_length=16)
+	no_hp = forms.CharField(min_length=11, max_length=15)
+
 	class Meta:
 		model = Profil
 		fields = [
@@ -50,6 +56,11 @@ class MagangForm(forms.ModelForm):
 		]
 
 class LamaranForm(forms.ModelForm):
+	CHOICES = [('Laki-Laki', 'Laki-Laki'), ('Perempuan', 'Perempuan')]
+	jenis_kelamin = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
+	email = forms.EmailField(required=True)
+	no_hp = forms.CharField(widget=forms.NumberInput())
+	
 	class Meta:
 		model = Lamaran
 		fields = [
