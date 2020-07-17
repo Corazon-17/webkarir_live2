@@ -106,9 +106,9 @@
 								<p class="mb-1 font-arial">Photo</p>
 								{% if lamaran != None %}
 									<a href="{{ lamaran.foto.url }}" title="">{{ lamaran.foto.name | slice:"5:" | truncatechars:40 }}</a>
-									{% render_field form.foto class="form-control border-dark" name="inpFile" id="inpFile" value=lamaran.foto %}
+									{% render_field form.foto class="form-control border-dark" name="inpFile" id="inpFile" accept=".jpeg" value=lamaran.foto %}
 								{% else %}
-									{% render_field form.foto class="form-control border-dark" name="inpFile" id="inpFile" %}
+									{% render_field form.foto class="form-control border-dark" name="inpFile" id="inpFile" accept=".jpeg" %}
 								{% endif %}
 								<p class="font-arial">File format: jpeg. Size max: 500kb</p>
 								<div class="image-preview border-dark" id="imagePreview">
@@ -123,7 +123,7 @@
 							</div>
 							<div class="col-lg-7">
 								<div class="card px-3 py-3 border-dark">
-									<p class="required-label mb-0 font-arial">Nama</p>
+									<p class="required-label mb-0 font-arial">Nama Lengkap</p>
 									{% if lamaran != None %}
 										{% render_field form.nama class="form-control form-style mb-2" value=lamaran.nama %}
 									{% else %}
@@ -161,9 +161,9 @@
 									</div>
 									<p class="required-label mb-0 font-arial">Gender</p>
 									{% if lamaran != None %}
-										{% render_field form.jenis_kelamin class="form-control form-style mb-2" value=lamaran.jenis_kelamin %}
+										{% render_field form.jenis_kelamin class="custom-list mb-2" selected=lamaran.jenis_kelamin %}
 									{% else %}
-										{% render_field form.jenis_kelamin class="form-control form-style mb-2" %}
+										{% render_field form.jenis_kelamin class="custom-list mb-2" %}
 									{% endif %}
 									<p class="required-label mb-0 font-arial">Alamat</p>
 									{% if lamaran != None %}
@@ -181,9 +181,9 @@
 							<div class="col-lg-7">
 								{% if lamaran != None %}
 								<a href="{{ lamaran.transkrip.url }}" title="">{{ lamaran.transkrip.name | slice:"10:" | truncatechars:40 }}</a>
-									{% render_field form.transkrip class="form-control" value=lamaran.transkrip %}
+									{% render_field form.transkrip class="form-control border-dark" accept=".pdf" value=lamaran.transkrip %}
 								{% else %}
-									{% render_field form.transkrip class="form-control" %}
+									{% render_field form.transkrip class="form-control border-dark" accept=".pdf" %}
 								{% endif %}
 								<p class=" font-arial mb-0">File format: pdf. Size max: 1mb</p>
 								<p class="font-weight-bold font-arial mt-1">Trancript Document File</p>
@@ -196,9 +196,9 @@
 							<div class="col-lg-7">
 								{% if lamaran != None %}
 								<a href="{{ lamaran.ijazah.url }}" title="">{{ lamaran.ijazah.name | slice:"7:" | truncatechars:40 }}</a>
-									{% render_field form.ijazah class="form-control" value=lamaran.ijazah %}
+									{% render_field form.ijazah class="form-control border-dark" accept=".pdf" value=lamaran.ijazah %}
 								{% else %}
-									{% render_field form.ijazah class="form-control" %}
+									{% render_field form.ijazah class="form-control border-dark" accept=".pdf" %}
 								{% endif %}
 								<p class=" font-arial mb-0">File format: pdf. Size max: 1mb</p>
 								<p class="font-weight-bold font-arial mt-1">Ijazah Document File</p>
@@ -211,9 +211,9 @@
 							<div class="col-lg-7">
 								{% if lamaran != None %}
 								<a href="{{ lamaran.cv.url }}" title="">{{ lamaran.cv.name | slice:"3:" | truncatechars:40 }}</a>
-									{% render_field form.cv class="form-control" value=lamaran.cv %}
+									{% render_field form.cv class="form-control border-dark" accept=".pdf" value=lamaran.cv %}
 								{% else %}
-									{% render_field form.cv class="form-control" %}
+									{% render_field form.cv class="form-control border-dark" accept=".pdf" %}
 								{% endif %}
 								<p class=" font-arial mb-0">File format: pdf. Size max: 1mb</p>
 								<p class="font-weight-bold  font-arial mt-1">CV Document File</p>

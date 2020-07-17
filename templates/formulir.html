@@ -118,9 +118,9 @@
 					<label class="label-top required-label font-arial">Surat Magang</label><br>
 					{% if formulir != None %}
 						<a href="{{ formulir.surat.url }}" title="">{{ formulir.surat.name | slice:"6:" | truncatechars:40 }}</a>
-						{% render_field form.surat class="form-control border-0" value=formulir.surat %}
+						{% render_field form.surat class="form-control border-0" accept=".pdf" value=formulir.surat %}
 					{% else %}
-						{% render_field form.surat class="form-control border-0" %}
+						{% render_field form.surat class="form-control border-0" accept=".pdf" %}
 					{% endif %}
 			    </div>
 		    </div>

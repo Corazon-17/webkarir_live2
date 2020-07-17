@@ -29,15 +29,6 @@
         -o-background-size: cover;
       }
 
-      .btn-styled {
-        color: #fff;
-        border: 2px solid #f5ffe4;
-      }
-
-      .btn-styled:hover {
-        color: #fff;
-      }
-
     </style>
     {% block stylesheet %}{% endblock %}
   </head>
@@ -56,23 +47,23 @@
           <div class="collapse navbar-collapse" id="navbarResponsive">
             <ul class="navbar-nav ml-auto">
               <li class="nav-item">
-                <a class="nav-link text-light font-poppins mr-1" href="{% url 'web:index' %}">Beranda</a>
+                <a class="nav-link text-light font-poppins" href="{% url 'web:index' %}">Beranda</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light font-poppins mr-1" href="https://profil.aitc.co.id/tentang-kami">Tentang Kami</a>
+                <a class="nav-link text-light font-poppins" href="https://profil.aitc.co.id/tentang-kami">Tentang Kami</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link text-light font-poppins mr-1" href="https://profil.aitc.co.id/portofolio">Portofolio</a>
+                <a class="nav-link text-light font-poppins" href="https://profil.aitc.co.id/portofolio">Portofolio</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item mr-1">
                 <a class="nav-link text-light font-poppins" href="https://profil.aitc.co.id/hubungi-kami">Kontak Kami</a>
               </li>
             </ul><emsp>
             {% if request.user.is_authenticated %}
-            <a class="btn-styled font-poppins" href="{% url 'web:logout' %}">Logout</a>
+            <a class="btn-styled" href="{% url 'web:logout' %}">Logout</a>
             {% else %}
-            <a class="btn-styled font-poppins" href="{% url 'web:login' %}">Login</a>
-            <a class="btn-styled font-poppins" href="{% url 'web:register' %}">Register</a>
+            <a class="btn-styled mr-1" href="{% url 'web:login' %}">Login</a>
+            <a class="btn-styled" href="{% url 'web:register' %}">Register</a>
             {% endif %}
           </div>
         </div>

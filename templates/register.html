@@ -4,37 +4,12 @@
 {% endblock %}
 {% block stylesheet %}
 	<style type="text/css" media="screen">
+
 		body > .container {
 	      padding: 60px 15px 0px;
 	      margin-bottom: 100px;
 	    }
 
-		.form-control{
-		  height: 50px;
-		  font-size: 14px;
-		}
-
-		.long-place::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-		  white-space:pre-line;  
-		  position:relative;
-		  top:-10px;
-		}
-
-		.long-place::-moz-placeholder { /* Firefox 19+ */
-		  white-space:pre-line;  
-		  position:relative;
-		  top:-10px;
-		}
-		.long-place:-ms-input-placeholder { /* IE 10+ */
-		  white-space:pre-line;  
-		  position:relative;
-		  top:-10px;
-		}
-		.long-place:-moz-placeholder { /* Firefox 18- */
-		  white-space:pre-line;  
-		  position:relative;
-		  top:-10px;
-		}
 	</style>
 {% endblock %}
 {% block content %}
@@ -50,11 +25,18 @@
 					    {% endfor %}
 					  {% endif %}
 
-					  {% if form.errors %}
+					  {% if form.errors or profil_form.errors%}
 					    <div class="alert alert-error">
-					      <h4 class="font-poppins">Please fix the following errors</h4>
+					      <h5 class="font-poppins">Please fix the following errors</h5>
 					      <ul>
 					        {% for field in form %}
+					          {% if field.errors %}
+					            {% for error in field.errors %}
+					              <li><a href="#id_{{ field.name }}" class="error font-poppins">{{ error|escape }}</a></li>
+					            {% endfor %}
+					          {% endif %}
+					        {% endfor %}
+					        {% for field in profil_form %}
 					          {% if field.errors %}
 					            {% for error in field.errors %}
 					              <li><a href="#id_{{ field.name }}" class="error font-poppins">{{ error|escape }}</a></li>
