@@ -19,6 +19,7 @@
 			{% load widget_tweaks %}
 			<div class="card card-border-20">
 				<div class="container-reg">
+					<h2 class="mb-4 pt-3 font-poppins"><strong>Register</strong></h2>
 					  {% if messages %}
 					    {% for message in messages %}
 					      <div {% if message.tags %} class="{{ message.tags }} text-danger font-poppins"{% endif %}>* {{ message }}</div>
@@ -26,8 +27,8 @@
 					  {% endif %}
 
 					  {% if form.errors or profil_form.errors%}
-					    <div class="alert alert-error">
-					      <h5 class="font-poppins">Please fix the following errors</h5>
+					    <!-- <div class="alert alert-error"> -->
+					      <h5 class="font-poppins">Perbaiki Kesalahan Berikut :</h5>
 					      <ul>
 					        {% for field in form %}
 					          {% if field.errors %}
@@ -47,9 +48,9 @@
 					      {% if form.non_field_errors %}
 					        {{ form.non_field_errors }}
 					      {% endif %}
-					    </div>
+					    <!-- </div> -->
 					  {% endif %}
-					<h2 class="mb-4 pt-3 font-poppins"><strong>Register</strong></h2>
+	
 					<div class="row">
 						<div class="col">
 							<div class="form-group">

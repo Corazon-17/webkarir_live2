@@ -81,8 +81,8 @@
 						    {% endfor %}
 						  {% endif %}
 						  {% if form.errors %}
-						    <div class="alert alert-error">
-						      <h4>Please fix the following errors</h4>
+						    <!-- <div class="alert alert-error"> -->
+						      <h4>Perbaiki Kesalahan Berikut :</h4>
 						      <ul>
 						        {% for field in form %}
 						          {% if field.errors %}
@@ -95,7 +95,7 @@
 						      {% if form.non_field_errors %}
 						        {{ form.non_field_errors }}
 						      {% endif %}
-						    </div>
+						    <!-- </div> -->
 						  {% endif %}
 						
 						<div class="row mb-4">
