@@ -24,9 +24,7 @@ class UserForm(UserCreationForm):
 		]
 
 class ProfilForm(forms.ModelForm):
-	# no_ktp = forms.CharField(widget=forms.NumberInput())
-	# no_hp = forms.CharField(widget=forms.NumberInput())
-	no_ktp = forms.CharField(min_length=16, max_length=16)
+	no_ktp = forms.CharField(min_length=15, max_length=16)
 	no_hp = forms.CharField(min_length=11, max_length=15)
 
 	class Meta:
@@ -44,6 +42,9 @@ class Captcha(forms.Form):
 	 	)
 
 class MagangForm(forms.ModelForm):
+	email = forms.EmailField(required=True)
+	no_hp = forms.CharField(min_length=11, max_length=15)
+
 	class Meta:
 		model = Magang
 		fields = [
@@ -59,7 +60,6 @@ class LamaranForm(forms.ModelForm):
 	CHOICES = [('Laki-Laki', 'Laki-Laki'), ('Perempuan', 'Perempuan')]
 	jenis_kelamin = forms.ChoiceField(widget=forms.RadioSelect, choices=CHOICES)
 	email = forms.EmailField(required=True)
-	no_hp = forms.CharField(widget=forms.NumberInput())
 	
 	class Meta:
 		model = Lamaran

@@ -98,8 +98,12 @@ class getLamaran(View):
 				return render(request, "lamaran.html", context)
 
 			else:
-				messages.add_message(request, messages.ERROR, '<h4 class="text-danger">* Data yang anda masukkan tidak sesuai</h4>')
-				return redirect('web:lamaran', id=lowongan.id)
+				context = {
+					"form": form,
+					"lowongan": lowongan
+				}
+
+				return render(request, "lamaran.html", context)
 
 def getMagang(request):
 	jurusan = Jurusan.objects.all()
@@ -154,6 +158,14 @@ class getFormulir(View):
 					"form": form,
 					"formulir": formulir,
 					"successful_submit": True
+				}
+
+				return render(request, "formulir.html", context)
+
+			else:
+				context = {
+					"jurusan": jurusan,
+					"form": form
 				}
 
 				return render(request, "formulir.html", context)

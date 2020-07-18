@@ -1,13 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from .validators import *
 
 # Create your models here.
 class Profil(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
-    no_ktp = models.CharField(max_length=16, unique=True)
-    no_hp = models.CharField(max_length=15, unique=True)
+    no_ktp = models.CharField(max_length=16, unique=True, validators=[ktp_numeric])
+    no_hp = models.CharField(max_length=15, unique=True, validators=[hp_numeric])
 
     def __str__(self):
         return self.user.username
@@ -31,10 +32,10 @@ class Lowongan(models.Model):
 class Lamaran(models.Model):
     lowongan = models.ForeignKey(Lowongan, on_delete=models.CASCADE)
     pelamar = models.ForeignKey(Profil, on_delete=models.CASCADE)
-    foto = models.ImageField(upload_to='foto/')
+    foto = models.ImageField(upload_to='foto/', validators=[max_photo_size, jpeg_valid])
     nama = models.CharField(max_length=100)
-    email = models.CharField(max_length=100)
-    no_hp = models.CharField(max_length=15)
+    email = models.CharField(max_length=100, validators=[email_valid])
+    no_hp = models.CharField(max_length=15, validators=[hp_numeric])
     tempat_lahir = models.CharField(max_length=100)
     tanggal_lahir = models.DateField()
     gender_choices = [
@@ -43,9 +44,9 @@ class Lamaran(models.Model):
     ]
     jenis_kelamin = models.CharField(max_length=15, choices=gender_choices)
     alamat = models.CharField(max_length=200)
-    transkrip = models.FileField(upload_to='transkrip/')
-    ijazah = models.FileField(upload_to='ijazah/')
-    cv = models.FileField(upload_to='cv/')
+    transkrip = models.FileField(upload_to='transkrip/', validators=[max_pdf_size, pdf_valid])
+    ijazah = models.FileField(upload_to='ijazah/', validators=[max_pdf_size, pdf_valid])
+    cv = models.FileField(upload_to='cv/', validators=[max_pdf_size, pdf_valid])
 
     def __str__(self):
         return self.lowongan.keahlian.nama
@@ -61,10 +62,10 @@ class Magang(models.Model):
 	jurusan = models.CharField(max_length=20)
 	nama = models.CharField(max_length=300)
 	sekolah = models.CharField(max_length=100)
-	email = models.CharField(max_length=100)
-	no_hp = models.CharField(max_length=15)
+	email = models.CharField(max_length=100, validators=[email_valid])
+	no_hp = models.CharField(max_length=15, validators=[hp_numeric])
 	periode = models.CharField(max_length=30)
-	surat = models.FileField(upload_to='surat/')
+	surat = models.FileField(upload_to='surat/', validators=[max_pdf_size, pdf_valid])
 
 	def __str__(self):
 		return self.jurusan
